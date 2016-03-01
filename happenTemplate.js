@@ -75,7 +75,7 @@ var library = (function() {
                     }
 				}
 			})(),
-			// MonthNumber: function(){ return String(new Date().getMonth() + 1);},
+			// MonthNumber: function(){ return String(new Date().getMonth() + 1);}
             MonthNumber: function(){
                 var date = new Date();
                 var month = date.getMonth() + 1;
