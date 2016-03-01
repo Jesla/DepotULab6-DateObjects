@@ -2,56 +2,80 @@ var library = (function() {
   return {
 	TimeStamp: (function(){
    	  return {
-		UnixTimestamp: function(){},
-		UnixMillisecond: function(){}
+		UnixTimestamp: function(){
+            var date = new Date();
+            var timeStamp = date.getTime();
+            return String(Math.floor(timeStamp / 1000)); 
+        },
+		UnixMillisecond: function(){
+            var date = new Date();
+            var timeStamp = date.getTime();
+            return String(timeStamp);     
+        }
 	  }
 	})(),
 	Local: (function(){
 	  return {
 		Time: (function() {
 		  return {
-	  	    WithSeconds: function(){},
-	   	    WithOutSeconds: function() {}
+	  	    WithSeconds: function(){
+                // var date = new Date();
+                // var time = (date.getHours()) + ":" + (date.getMinutes()) + ":" + (date.getSeconds());
+                // return String(time); 
+              }, //*******
+	   	    WithOutSeconds: function() {} //*******
 		  }
 		})(),
 		MDY: (function(){
 	  	  return {
-		    Numeral: function(){},
-			Name: function(){}
+		    Numeral: function(){}, //*******
+			Name: function(){} //*******
 		  }
 		  })(),
 		}
 	})(),
 	Second: (function(){
 		return{
-			Second: function(){},
-			DblDigit: function(){}
+			Second: function(){}, //*******
+			DblDigit: function(){} //*******
 		}
 	})(),
 	Minute: (function(){
 		return{
-			Minute: function(){},
-			DblDigit: function(){}
+			Minute: function(){}, //*******
+			DblDigit: function(){} //*******
 		}
 	})(),
 	Hour: (function(){
 		return {
-			TwentyFourHour: function() {},
-			TwelveHour: function() {},
+			TwentyFourHour: function() {}, //*******
+			TwelveHour: function() {}, //*******
 			AMPM: (function() {
 				return {
-					UpperCase: function(){},
-					LowerCase: function(){}
+					UpperCase: function(){}, //*******
+					LowerCase: function(){} //*******
 				}
 			})()
 		}
 	})(),
 	Week: (function(){
 		return {
-			DayOfWeek: function(){},
-			AbrDayOfWeek: function(){},
-			FirstTwoOfWeek: function(){},
-			WeekOfYear: function(){}
+			DayOfWeek: function(){
+                var date = new Date();
+                var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                return(day[date.getDay()]
+            )},
+			AbrDayOfWeek: function(){
+                var date = new Date();
+               var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                return(day[date.getDay()]).substring(0, 3);
+            },
+			FirstTwoOfWeek: function(){
+                var date = new Date();
+               var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                return(day[date.getDay()]).substring(0, 2);  
+            },
+			WeekOfYear: function(){} //*******
 		}
 	})(),
 	Month: (function(){
@@ -63,10 +87,10 @@ var library = (function() {
                         var month = date.getDate();
                         return String(month);   
                     },
-					Ordinal: function(){
+					Ordinal: function(){  //REVISIT THIS ONE!!!!
                         var date = new Date();
                         var month = date.getDate();
-                        return String(month + "st");     
+                        return String(month + "st"); //I don't think this is right. What about nd, rd, th??
                     },
 					DateDblDigit: function(){
                         var date = new Date();
@@ -75,7 +99,6 @@ var library = (function() {
                     }
 				}
 			})(),
-			// MonthNumber: function(){ return String(new Date().getMonth() + 1);}
             MonthNumber: function(){
                 var date = new Date();
                 var month = date.getMonth() + 1;
@@ -88,37 +111,13 @@ var library = (function() {
             },
 			AbrOfCurrentMonth: function(){
                 var date = new Date();
-                var month = new Array();
-                month[0] = "January";
-                month[1] = "February";
-                month[2] = "March";
-                month[3] = "April";
-                month[4] = "May";
-                month[5] = "June";
-                month[6] = "July";
-                month[7] = "August";
-                month[8] = "September";
-                month[9] = "October";
-                month[10] = "November";
-                month[11] = "December";
-                return (month[2]).substring(0, 3);
+                var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                return(month[date.getMonth()]).substring(0, 3);
             },
 			CurrentMonth: function(){
                 var date = new Date();
-                var month = new Array();
-                month[0] = "January";
-                month[1] = "February";
-                month[2] = "March";
-                month[3] = "April";
-                month[4] = "May";
-                month[5] = "June";
-                month[6] = "July";
-                month[7] = "August";
-                month[8] = "September";
-                month[9] = "October";
-                month[10] = "November";
-                month[11] = "December";
-                return (month[2]);
+                var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                return(month[date.getMonth()]);
             }
 		}
 	})(),
@@ -126,14 +125,22 @@ var library = (function() {
 		return {
 			DayOfYear: (function(){
 				return {
-					Numeral: function(){},
-					Ordinal: function(){}
+					Numeral: function(){}, //*******
+					Ordinal: function(){} //*******
 				}
 			})(),
-			YearFull: function(){},
-			YearAbr: function(){}
+			YearFull: function(){
+                var date = new Date();
+                var year = date.getFullYear();
+                return String(year);
+            },
+			YearAbr: function(){
+                var date = new Date();
+                var year = date.getFullYear();
+                return String(year).substring(2, 4);             
+            }
 		}
 	})(),
-	Defaults: function(){}
+	Defaults: function(){} //*******
   }
 })();
