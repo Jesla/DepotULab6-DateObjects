@@ -96,14 +96,14 @@ var library = (function() {
                 var hour = date.getHours() 
                 return String(hour);  
             },
-			// TwelveHour: function() {  //***** NOT DONE *****
-            //     var date = new Date();
-            //     var hour = date.getHours() 
-            //     if (hour > 12) {
-            //       // replace 13 through 24 with 1 through 12   
-            //     }
-            //     return String(hour);  
-            // }, 
+            	TwelveHour: function() {
+                var date = new Date();
+                var hour = date.getHours() % 12;
+                if (hour > 12) {
+                hour = (hour += 12);
+                }
+                return String(hour);   
+            },
 			AMPM: (function() {
 				return {
 					UpperCase: function(){ //THIS IS KIND OF CHEAP...IS IT RIGHT?
@@ -153,11 +153,11 @@ var library = (function() {
 					Ordinal: function(){
                         var date = new Date();
                         var month = date.getDate();
-                        if (month === (1, 21, 31)) {
+                        if (month === 1 && 21 && 31) {
                             return String(month + "st")
-                        } else if (month === (2, 22)) {
+                        } else if (month === 2 && 22) {
                             return String(month + "nd")
-                        } else if (month === (3, 23)) {
+                        } else if (month === 3 && 23) {
                             return String(month + "rd")
                         } else
                         return String(month + "st");
@@ -203,7 +203,7 @@ var library = (function() {
 				return {
 					Numeral: function(){}, //***** NOT DONE *****
 					Ordinal: function(){ //***** NOT DONE *****
-                        //if it ends in: 1 - st, 2 - nd, 3 - rd, else - th                     
+                        //if it ends in: 1 - st, 2 - nd, 3 - rd, else - th   - Like day of month ordinal                  
                     }
 				}
 			})(),
@@ -219,6 +219,6 @@ var library = (function() {
             }
 		}
 	})(),
-	Defaults: function(){}
+	Defaults: function(){} //***** NOT DONE *****
   }
 })();
